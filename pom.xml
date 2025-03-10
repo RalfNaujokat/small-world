@@ -1,0 +1,93 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>de.ralfn.pub</groupId>
+	<artifactId>small-world</artifactId>
+	<version>${revision}</version>
+	<packaging>pom</packaging>
+
+
+	<properties>
+		<revision>1.0.0-SNAPSHOT</revision>
+
+		<!-- Maven config. -->
+		<maven.major.version>3.9</maven.major.version>
+		<maven.minor.version>9</maven.minor.version>
+		<maven.version>${maven.major.version}.${maven.minor.version}</maven.version>
+
+		<!-- Text/Character encoding config. -->
+		<default.encoding>UTF-8</default.encoding>
+		<project.build.sourceEncoding>${default.encoding}</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>${default.encoding}</project.reporting.outputEncoding>
+
+		<!-- Java config. -->
+		<java.version>23</java.version>
+		<maven.compiler.release>${java.version}</maven.compiler.release>
+		<maven.compiler.proc>full</maven.compiler.proc>
+
+		<!-- Maven Plugins -->
+		<maven-enforcer-plugin.version>3.5.0</maven-enforcer-plugin.version>
+		<versions-maven-plugin.version>2.18.0</versions-maven-plugin.version>
+		<maven-compiler-plugin.version>3.14.0</maven-compiler-plugin.version>
+	</properties>
+
+
+	<modules>
+		<module>model</module>
+		<module>api</module>
+		<module>rest-client</module>
+		<module>rest-server</module>
+	</modules>
+
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<artifactId>maven-enforcer-plugin</artifactId>
+					<version>${maven-enforcer-plugin.version}</version>
+					<executions>
+						<execution>
+							<goals>
+								<goal>enforce</goal>
+							</goals>
+							<configuration>
+								<rules>
+									<requireMavenVersion>
+										<version>${maven.version}</version>
+									</requireMavenVersion>
+								</rules>
+							</configuration>
+						</execution>
+					</executions>
+				</plugin>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>versions-maven-plugin</artifactId>
+					<version>${versions-maven-plugin.version}</version>
+				</plugin>
+				<plugin>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>${maven-compiler-plugin.version}</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+
+		<plugins>
+			<plugin>
+				<artifactId>maven-enforcer-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>versions-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
+
+</project>
