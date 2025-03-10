@@ -4,7 +4,6 @@ import de.ralfn.pub.small_world.model.Person;
 
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
@@ -18,8 +17,7 @@ public class SmallWorldRepository
 
 	private static List<Person> createRandomData()
 	{
-		ArrayList<Person> result = new ArrayList<>();
-		return result;
+		return new DataGenerator().createRandomPersonList( 10000 );
 	}
 
 	@Override
