@@ -15,9 +15,9 @@ public class DataGenerator
 	{
 		try
 		{
-			firstNameFemale = read( "firstName-female.txt" );
-			firstNameMale = read( "firstName-male.txt" );
-			lastName = read( "lastName.txt" );
+			firstNameFemale = readFirstWordOfTextFile( "firstName-female.txt" );
+			firstNameMale = readFirstWordOfTextFile( "firstName-male.txt" );
+			lastName = readFirstWordOfTextFile( "lastName.txt" );
 		}
 		catch ( IOException e )
 		{
@@ -67,7 +67,7 @@ public class DataGenerator
 	private final String[] firstNameMale;
 	private final String[] lastName;
 
-	private String[] read( String resourceName )
+	private String[] readFirstWordOfTextFile( String resourceName )
 		throws
 		IOException
 	{
@@ -77,12 +77,12 @@ public class DataGenerator
 			.filter( Objects::nonNull )
 			.filter( s -> !s.isBlank() )
 			.filter( s -> !s.startsWith( "#" ) )
-			.map( this::firstName );
+			.map( this::firstWord );
 
 		return ( String[] )stream.toArray( String[]::new );
 	}
 
-	private String firstName( String line )
+	private String firstWord( String line )
 	{
 		return line.trim().split( "\\s+" )[ 0 ];
 	}
