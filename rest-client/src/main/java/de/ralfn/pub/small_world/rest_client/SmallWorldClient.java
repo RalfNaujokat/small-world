@@ -1,6 +1,8 @@
 package de.ralfn.pub.small_world.rest_client;
 
 import de.ralfn.pub.commons.RestClient;
+import de.ralfn.pub.commons.RestClient.Request;
+import de.ralfn.pub.commons.RestClient.Response;
 import de.ralfn.pub.small_world.api.PersonService;
 import de.ralfn.pub.small_world.model.Person;
 
@@ -25,8 +27,8 @@ public class SmallWorldClient
 	@Override
 	public Person create( final Person person )
 	{
-		RestClient.Response<Person> response = restClient
-			.post( RestClient.Request.of( "", null, person ) );
+		Response<Person> response = restClient
+			.post( Request.of( "", null, person ) );
 
 		return response
 			.body();
