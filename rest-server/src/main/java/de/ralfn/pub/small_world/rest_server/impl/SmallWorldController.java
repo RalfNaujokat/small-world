@@ -29,6 +29,12 @@ public class SmallWorldController
 	}
 
 	@Override
+	public long size()
+	{
+		return service.size();
+	}
+
+	@Override
 	public Person read( final Long id )
 	{
 		return service.read( id );
@@ -62,5 +68,13 @@ public class SmallWorldController
 	public void delete( final Person person )
 	{
 		service.delete( person );
+	}
+
+	//
+
+	@Override
+	public List<Person> from( final String city )
+	{
+		return service.from( city );
 	}
 }

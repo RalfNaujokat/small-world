@@ -39,31 +39,64 @@ public interface SmallWorldController
 		summary = "Create a new Person",
 		description = "This API creates a new Person item in the backend database."
 	)
-	Person create( @RequestBody final Person person );
+	Person create(
+		@RequestBody final Person person
+	);
+
+	@Override
+	@GetMapping( path = "size", produces = Json )
+	long size();
 
 	@Override
 	@GetMapping( path = "{id}", produces = Json )
 	@Operation( operationId = "readById" )
-	Person read( @PathVariable( "id" ) final Long id );
+	Person read(
+		@PathVariable( "id" )
+		final Long id
+	);
 
 	@Override
-	List<Long> read( final Predicate<Person> predicate, final Comparator<Person> comparator );
+	List<Long> read(
+		final Predicate<Person> predicate,
+		final Comparator<Person> comparator
+	);
 
 	@Override
 	@GetMapping( produces = Json )
-	@Operation( operationId = "readByIds" )
-	List<Person> read( @RequestParam( "ids" ) final List<Long> ids );
+	@Operation( operationId = "readByIdList" )
+	List<Person> read(
+		@RequestParam( "ids" )
+		final List<Long> ids
+	);
 
 	@Override
 	@PutMapping( path = "{id}", produces = Json )
-	Person update( @RequestBody final Person person );
+	Person update(
+		@RequestBody
+		final Person person
+	);
 
 	@Override
 	@DeleteMapping( "{id}" )
 	@Operation( operationId = "deleteById" )
-	void delete( @PathVariable( "id" ) final Long id );
+	void delete(
+		@PathVariable( "id" )
+		final Long id
+	);
 
 	@Override
 	@DeleteMapping( consumes = Json )
-	void delete( @RequestBody final Person person );
+	void delete(
+		@RequestBody
+		final Person person
+	);
+
+	//
+
+	@Override
+	@GetMapping( path = "from/{city}", produces = Json )
+	public List<Person> from(
+		@PathVariable( "city" )
+		String city
+	);
 }

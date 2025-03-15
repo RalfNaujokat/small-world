@@ -1,12 +1,11 @@
 package de.ralfn.pub.small_world.model;
 
-import de.ralfn.pub.small_world.model.property.HasId;
+import de.ralfn.pub.commons.HasId;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 
 import java.time.LocalDate;
 
@@ -31,5 +30,9 @@ public class Person
 	protected String firstName;
 	protected String lastName;
 	protected Gender gender;
+
+	protected String zip;
+	protected String cityName;
+
 	protected LocalDate dayOfBirth;
 }

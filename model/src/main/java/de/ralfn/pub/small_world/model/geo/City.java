@@ -1,6 +1,6 @@
 package de.ralfn.pub.small_world.model.geo;
 
-import de.ralfn.pub.small_world.model.property.HasId;
+import de.ralfn.pub.commons.HasId;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,6 +20,6 @@ public class City
 	protected Long stateId;
 	protected Long districtId;
 
-	protected String name;
 	protected String zip;
+	protected String name;
 }

@@ -11,23 +11,9 @@
 	</parent>
 
 
-	<groupId>de.ralfn.pub.small-world</groupId>
-	<artifactId>api</artifactId>
+	<artifactId>commons</artifactId>
 	<version>${revision}</version>
 	<packaging>jar</packaging>
 
-
-	<dependencies>
-		<dependency>
-			<groupId>de.ralfn.pub.small-world</groupId>
-			<artifactId>model</artifactId>
-			<version>${revision}</version>
-		</dependency>
-		<dependency>
-			<groupId>de.ralfn.pub</groupId>
-			<artifactId>commons</artifactId>
-			<version>${revision}</version>
-		</dependency>
-	</dependencies>
 
 </project>

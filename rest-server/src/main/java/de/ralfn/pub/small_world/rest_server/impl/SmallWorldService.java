@@ -29,6 +29,12 @@ public class SmallWorldService
 	}
 
 	@Override
+	public long size()
+	{
+		return repository.size();
+	}
+
+	@Override
 	public Person read( final Long id )
 	{
 		return repository.read( id );
@@ -62,5 +68,13 @@ public class SmallWorldService
 	public void delete( final Person person )
 	{
 		repository.delete( person );
+	}
+
+	//
+
+	@Override
+	public List<Person> from( final String city )
+	{
+		return repository.from( city );
 	}
 }

@@ -1,4 +1,4 @@
-package de.ralfn.pub.small_world.model.property;
+package de.ralfn.pub.commons;
 
 public interface HasId<ID>
 {

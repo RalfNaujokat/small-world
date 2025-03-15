@@ -13,18 +13,32 @@ import java.util.function.Predicate;
 public class SmallWorldRepository
 	implements de.ralfn.pub.small_world.rest_server.api.SmallWorldRepository
 {
-	private final List<Person> persons = createRandomData();
-
-	private static List<Person> createRandomData()
+	public SmallWorldRepository()
 	{
-		return new DataGenerator().createRandomPersonList( 10000 );
+		Thread.ofVirtual().start( () ->
+			{
+				System.out.println( "Starting data generation..." );
+				persons = new DataGenerator().createRandomPersonList( 1_000_000 );
+				System.out.println( "Data generation done!" );
+			}
+		);
 	}
+
+	//
+
+	private static List<Person> persons;
 
 	@Override
 	public Person create( final Person person )
 	{
 		persons.add( person );
 		return person;
+	}
+
+	@Override
+	public long size()
+	{
+		return persons.size();
 	}
 
 	@Override
@@ -75,5 +89,16 @@ public class SmallWorldRepository
 	public void delete( final Person person )
 	{
 		delete( person.getId() );
+	}
+
+	//
+
+	@Override
+	public List<Person> from( final String city )
+	{
+		return persons
+			.stream()
+			.filter( person -> person.getCityName().startsWith( city ) )
+			.toList();
 	}
 }

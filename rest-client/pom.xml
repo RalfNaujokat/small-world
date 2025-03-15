@@ -23,6 +23,11 @@
 			<artifactId>api</artifactId>
 			<version>${revision}</version>
 		</dependency>
+		<dependency>
+			<groupId>de.ralfn.pub</groupId>
+			<artifactId>commons</artifactId>
+			<version>${revision}</version>
+		</dependency>
 	</dependencies>
 
 </project>

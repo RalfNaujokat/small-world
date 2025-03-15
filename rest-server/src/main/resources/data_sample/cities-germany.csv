@@ -1,0 +1,6 @@
+#
+# Quelle:
+# https://github.com/andrena/java8-workshop/blob/master/demos/Liste-Staedte-in-Deutschland.csv
+#
+Schlüsselnummer;Stadt;PLZ;Bundesland;Landkreis
+05513;Gelsenkirchen;45899;Nordrhein-Westfalen; Bottrop
