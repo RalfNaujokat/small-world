@@ -79,7 +79,13 @@ public class SmallWorldClient
 	//
 
 	@Override
-	public List<Person> from( final String city )
+	public List<Person> byCity( final String city, Integer limit )
+	{
+		return List.of();
+	}
+
+	@Override
+	public List<Person> byLastName( final String lastName, Integer limit )
 	{
 		return List.of();
 	}

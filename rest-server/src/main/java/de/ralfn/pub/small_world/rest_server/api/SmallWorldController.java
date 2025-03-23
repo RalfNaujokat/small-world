@@ -40,7 +40,8 @@ public interface SmallWorldController
 		description = "This API creates a new Person item in the backend database."
 	)
 	Person create(
-		@RequestBody final Person person
+		@RequestBody
+		final Person person
 	);
 
 	@Override
@@ -94,9 +95,20 @@ public interface SmallWorldController
 	//
 
 	@Override
-	@GetMapping( path = "from/{city}", produces = Json )
-	public List<Person> from(
+	@GetMapping( path = "byCity/{city}", produces = Json )
+	public List<Person> byCity(
 		@PathVariable( "city" )
-		String city
+		final String city,
+		@RequestParam( name = "maxNum", required = false, defaultValue = "100")
+		final Integer limit
+	);
+
+	@Override
+	@GetMapping( path = "byLastName/{lastName}", produces = Json )
+	List<Person> byLastName(
+		@PathVariable( "lastName" )
+		final String lastName,
+		@RequestParam( name = "maxNum", required = false, defaultValue = "100")
+		final Integer limit
 	);
 }

@@ -1,5 +1,6 @@
 package de.ralfn.pub.small_world.rest_server.impl;
 
+import de.ralfn.pub.commons.Holder;
 import de.ralfn.pub.small_world.model.Person;
 import de.ralfn.pub.small_world.rest_server.api.SmallWorldRepository;
 
@@ -73,8 +74,30 @@ public class SmallWorldService
 	//
 
 	@Override
-	public List<Person> from( final String city )
+	public List<Person> byCity( final String city, final Integer limit )
 	{
-		return repository.from( city );
+		final Holder<List<Person>> result = Holder.create();
+		Thread.ofVirtual().start( () ->
+			{
+				result.set( repository.byCity( city, limit ) );
+			} );
+		while ( result.get() == null )
+		{
+			try
+			{
+				Thread.sleep( 100 );
+			}
+			catch ( InterruptedException e )
+			{
+				throw new RuntimeException( e );
+			}
+		}
+		return result.get();
+	}
+
+	@Override
+	public List<Person> byLastName( final String lastName, final Integer limit )
+	{
+		return repository.byLastName( lastName, limit );
 	}
 }

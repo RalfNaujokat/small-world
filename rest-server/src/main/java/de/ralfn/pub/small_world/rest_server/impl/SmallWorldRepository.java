@@ -17,9 +17,10 @@ public class SmallWorldRepository
 	{
 		Thread.ofVirtual().start( () ->
 			{
-				System.out.println( "Starting data generation..." );
-				persons = new DataGenerator().createRandomPersonList( 1_000_000 );
-				System.out.println( "Data generation done!" );
+				final int numberOfPersons = 1_000_000;
+				System.out.printf( "Starting data generation for %d...%n", numberOfPersons );
+				persons = new DataGenerator().createRandomPersonList( numberOfPersons );
+				System.out.printf( "%d persons generated!%n", numberOfPersons );
 			}
 		);
 	}
@@ -94,11 +95,22 @@ public class SmallWorldRepository
 	//
 
 	@Override
-	public List<Person> from( final String city )
+	public List<Person> byCity( final String city, Integer limit )
 	{
 		return persons
 			.stream()
 			.filter( person -> person.getCityName().startsWith( city ) )
+			.limit( limit )
+			.toList();
+	}
+
+	@Override
+	public List<Person> byLastName( final String lastName, final Integer limit )
+	{
+		return persons
+			.stream()
+			.filter( person -> person.getLastName().startsWith( lastName ) )
+			.limit( limit )
 			.toList();
 	}
 }

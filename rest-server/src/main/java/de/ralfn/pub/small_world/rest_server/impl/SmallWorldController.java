@@ -72,9 +72,17 @@ public class SmallWorldController
 
 	//
 
+	private static final int maxLimit = 1000;
+
 	@Override
-	public List<Person> from( final String city )
+	public List<Person> byCity( final String city, Integer limit )
 	{
-		return service.from( city );
+		return service.byCity( city, Math.min( limit, maxLimit ) );
+	}
+
+	@Override
+	public List<Person> byLastName( final String lastName, final Integer limit )
+	{
+		return service.byLastName( lastName, Math.min( limit, maxLimit ) );
 	}
 }
