@@ -17,9 +17,11 @@ public class SmallWorldRepository
 	{
 		Thread.ofVirtual().start( () ->
 			{
+				DataGenerator dataGenerator = new DataGenerator();
+
 				final int numberOfPersons = 1_000_000;
 				System.out.printf( "Starting data generation for %d...%n", numberOfPersons );
-				persons = new DataGenerator().createRandomPersonList( numberOfPersons );
+				persons = dataGenerator.createRandomPersonList( numberOfPersons );
 				System.out.printf( "%d persons generated!%n", numberOfPersons );
 			}
 		);
