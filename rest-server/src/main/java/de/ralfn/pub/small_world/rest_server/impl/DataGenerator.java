@@ -1,9 +1,11 @@
 package de.ralfn.pub.small_world.rest_server.impl;
 
+import de.ralfn.pub.commons.Java;
 import de.ralfn.pub.small_world.model.Person;
 import de.ralfn.pub.small_world.model.geo.City;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +24,12 @@ public class DataGenerator
 			firstNameMale = readFirstWordOfTextFile( folder + "firstName-male.txt" );
 			lastName = readFirstWordOfTextFile( folder + "lastName.txt" );
 			city = readCities( folder + "cities-germany.csv" );
+
+			System.out.println( "Data Generator is using" );
+			System.out.println( "%10d female first names.".formatted( firstNameFemale.length ) );
+			System.out.println( "%10d male first names.".formatted( firstNameMale.length ) );
+			System.out.println( "%10d last names.".formatted( lastName.length ) );
+			System.out.println( "%10d city names.".formatted( city.length ) );
 		}
 		catch ( IOException e )
 		{
@@ -92,8 +100,14 @@ public class DataGenerator
 		throws
 		IOException
 	{
-		ClassLoader cl = Thread.currentThread().getContextClassLoader();
-		Stream<String> stream = new String( cl.getSystemResourceAsStream( resourceName ).readAllBytes() )
+		InputStream is = Java.get()
+			.classLoader()
+			.getResourceAsStream( resourceName );
+
+		if ( is == null )
+			throw new RuntimeException( "Unable to load resource '%s'".formatted( resourceName ) );
+
+		Stream<String> stream = new String( is.readAllBytes() )
 			.lines()
 			.filter( Objects::nonNull )
 			.filter( s -> !s.isBlank() )
@@ -107,8 +121,14 @@ public class DataGenerator
 		throws
 		IOException
 	{
-		ClassLoader cl = Thread.currentThread().getContextClassLoader();
-		Stream<City> stream = new String( cl.getSystemResourceAsStream( resourceName ).readAllBytes() )
+		InputStream is = Java.get()
+			.classLoader()
+			.getResourceAsStream( resourceName );
+
+		if ( is == null )
+			throw new RuntimeException( "Unable to load resource '%s'".formatted( resourceName ) );
+
+		Stream<City> stream = new String( is.readAllBytes() )
 			.lines()
 			.filter( Objects::nonNull )
 			.filter( s -> !s.isBlank() )

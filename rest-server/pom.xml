@@ -79,6 +79,9 @@
 						</goals>
 					</execution>
 				</executions>
+				<configuration>
+					<mainClass>de.ralfn.pub.small_world.rest_server.SmallWorldServer</mainClass>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
