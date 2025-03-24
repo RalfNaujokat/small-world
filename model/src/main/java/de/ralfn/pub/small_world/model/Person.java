@@ -31,6 +31,9 @@ public class Person
 	protected String lastName;
 	protected Gender gender;
 
+	protected String streetName;
+	protected String houseNo;
+
 	protected String zip;
 	protected String cityName;
 

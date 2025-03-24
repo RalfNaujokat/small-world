@@ -23,12 +23,14 @@ public class DataGenerator
 			firstNameFemale = readFirstWordOfTextFile( folder + "firstName-female.txt" );
 			firstNameMale = readFirstWordOfTextFile( folder + "firstName-male.txt" );
 			lastName = readFirstWordOfTextFile( folder + "lastName.txt" );
+			street = readStreets( folder + "streets-germany.txt" );
 			city = readCities( folder + "cities-germany.csv" );
 
 			System.out.println( "Data Generator is using" );
 			System.out.println( "%10d female first names.".formatted( firstNameFemale.length ) );
 			System.out.println( "%10d male first names.".formatted( firstNameMale.length ) );
 			System.out.println( "%10d last names.".formatted( lastName.length ) );
+			System.out.println( "%10d street names.".formatted( street.length ) );
 			System.out.println( "%10d city names.".formatted( city.length ) );
 		}
 		catch ( IOException e )
@@ -83,6 +85,8 @@ public class DataGenerator
 			.gender( gender )
 			.firstName( firstNames[ ( int )( Math.random() * firstNames.length ) ] )
 			.lastName( lastName[ ( int )( Math.random() * lastName.length ) ] )
+			.streetName( street[ ( int )( Math.random() * street.length ) ] )
+			.houseNo( Integer.toString( ( int )( Math.random() * 100 ) ) )
 			.zip( c.getZip() )
 			.cityName( c.getName() )
 			.dayOfBirth( LocalDate.now().minusDays( ( int )( Math.random() * 365.25 * 110 ) ) )
@@ -94,6 +98,7 @@ public class DataGenerator
 	private final String[] firstNameFemale;
 	private final String[] firstNameMale;
 	private final String[] lastName;
+	private final String[] street;
 	private final City[] city;
 
 	private String[] readFirstWordOfTextFile( String resourceName )
@@ -115,6 +120,34 @@ public class DataGenerator
 			.map( this::firstWord );
 
 		return ( String[] )stream.toArray( String[]::new );
+	}
+
+	private String[] readStreets( String resourceName )
+		throws
+		IOException
+	{
+		InputStream is = Java.get()
+			.classLoader()
+			.getResourceAsStream( resourceName );
+
+		if ( is == null )
+			throw new RuntimeException( "Unable to load resource '%s'".formatted( resourceName ) );
+
+		Stream<String> stream = new String( is.readAllBytes() )
+			.lines()
+			.filter( Objects::nonNull )
+			.filter( s -> !s.isBlank() )
+			.filter( s -> !s.startsWith( "#" ) )
+			.map( this::readStreet );
+
+		return ( String[] )stream.toArray( String[]::new );
+	}
+
+	private String readStreet( String line )
+	{
+		String[] part = line.split( "\t" );
+
+		return part[ 1 ];
 	}
 
 	private City[] readCities( String resourceName )
