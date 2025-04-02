@@ -23,7 +23,7 @@
 		<project.reporting.outputEncoding>${default.encoding}</project.reporting.outputEncoding>
 
 		<!-- Java config. -->
-		<java.version>23</java.version>
+		<java.version>24</java.version>
 		<maven.compiler.release>${java.version}</maven.compiler.release>
 		<maven.compiler.proc>full</maven.compiler.proc>
 
