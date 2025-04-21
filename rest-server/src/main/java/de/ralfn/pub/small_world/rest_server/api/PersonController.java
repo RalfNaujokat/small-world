@@ -20,14 +20,9 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
 
-/**
- * @see <a href="https://github.com/swagger-api/swagger-core/">Docs on GitHub</a>
- * @see <a href="https://github.com/swagger-api/swagger-core/wiki/Swagger-2.X---Getting-started">Getting started</a>
- * @see <a href="https://github.com/swagger-api/swagger-core/wiki/Swagger-2.X---Annotations">Annotations</a>
- */
 @RestController
-@RequestMapping( SmallWorldController.Path )
-public interface SmallWorldController
+@RequestMapping( PersonController.Path )
+public interface PersonController
 	extends PersonService
 {
 	String Path = RootController.RestApiV1 + "/person";

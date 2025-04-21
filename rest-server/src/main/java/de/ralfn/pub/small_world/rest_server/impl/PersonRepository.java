@@ -1,6 +1,7 @@
 package de.ralfn.pub.small_world.rest_server.impl;
 
 import de.ralfn.pub.small_world.model.Person;
+import de.ralfn.pub.small_world.rest_server.impl.uti.PersonDataGenerator;
 
 import org.springframework.stereotype.Component;
 
@@ -10,18 +11,18 @@ import java.util.Objects;
 import java.util.function.Predicate;
 
 @Component
-public class SmallWorldRepository
-	implements de.ralfn.pub.small_world.rest_server.api.SmallWorldRepository
+public class PersonRepository
+	implements de.ralfn.pub.small_world.rest_server.api.PersonRepository
 {
-	public SmallWorldRepository()
+	public PersonRepository()
 	{
 		Thread.ofVirtual().start( () ->
 			{
-				DataGenerator dataGenerator = new DataGenerator();
+				PersonDataGenerator personDataGenerator = new PersonDataGenerator();
 
 				final int numberOfPersons = 1_000_000;
 				System.out.printf( "Starting data generation for %d...%n", numberOfPersons );
-				persons = dataGenerator.createRandomPersonList( numberOfPersons );
+				persons = personDataGenerator.createRandomPersonList( numberOfPersons );
 				System.out.printf( "%d persons generated!%n", numberOfPersons );
 			}
 		);

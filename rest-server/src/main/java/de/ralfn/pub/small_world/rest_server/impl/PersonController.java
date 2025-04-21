@@ -1,7 +1,7 @@
 package de.ralfn.pub.small_world.rest_server.impl;
 
 import de.ralfn.pub.small_world.model.Person;
-import de.ralfn.pub.small_world.rest_server.api.SmallWorldService;
+import de.ralfn.pub.small_world.rest_server.api.PersonService;
 
 import org.springframework.stereotype.Component;
 
@@ -10,12 +10,12 @@ import java.util.List;
 import java.util.function.Predicate;
 
 @Component
-public class SmallWorldController
-	implements de.ralfn.pub.small_world.rest_server.api.SmallWorldController
+public class PersonController
+	implements de.ralfn.pub.small_world.rest_server.api.PersonController
 {
-	private final SmallWorldService service;
+	private final PersonService service;
 
-	public SmallWorldController( final SmallWorldService service )
+	public PersonController( final PersonService service )
 	{
 		this.service = service;
 	}

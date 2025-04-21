@@ -2,7 +2,7 @@ package de.ralfn.pub.small_world.rest_server.impl;
 
 import de.ralfn.pub.commons.Holder;
 import de.ralfn.pub.small_world.model.Person;
-import de.ralfn.pub.small_world.rest_server.api.SmallWorldRepository;
+import de.ralfn.pub.small_world.rest_server.api.PersonRepository;
 
 import org.springframework.stereotype.Component;
 
@@ -11,12 +11,12 @@ import java.util.List;
 import java.util.function.Predicate;
 
 @Component
-public class SmallWorldService
-	implements de.ralfn.pub.small_world.rest_server.api.SmallWorldService
+public class PersonService
+	implements de.ralfn.pub.small_world.rest_server.api.PersonService
 {
-	private final SmallWorldRepository repository;
+	private final PersonRepository repository;
 
-	public SmallWorldService( final de.ralfn.pub.small_world.rest_server.api.SmallWorldRepository repository )
+	public PersonService( final PersonRepository repository )
 	{
 		this.repository = repository;
 	}

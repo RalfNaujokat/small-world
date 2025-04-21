@@ -23,7 +23,7 @@ public interface PersonService
 
 	/**
 	 * @param lastName
-	 * 	the name(s) that should be found </br>
+	 * 	the last name(s) that should be found </br>
 	 * 	the parameter name is used in .startsWith()
 	 * @param limit
 	 * 	the maximum number of persons that should be returned</br>

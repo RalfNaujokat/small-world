@@ -1,4 +1,4 @@
-package de.ralfn.pub.small_world.rest_server.impl;
+package de.ralfn.pub.small_world.rest_server.impl.uti;
 
 import de.ralfn.pub.commons.Java;
 import de.ralfn.pub.small_world.model.Person;
@@ -12,9 +12,9 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Stream;
 
-public class DataGenerator
+public class PersonDataGenerator
 {
-	public DataGenerator()
+	public PersonDataGenerator()
 	{
 		try
 		{
